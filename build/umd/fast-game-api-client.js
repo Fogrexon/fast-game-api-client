@@ -467,6 +467,46 @@
       return _ref2.apply(this, arguments);
     };
   }();
+  var putFetch = /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3(apiKey, url) {
+      var requestData,
+        fetchOptions,
+        result,
+        _args3 = arguments;
+      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+        while (1) switch (_context3.prev = _context3.next) {
+          case 0:
+            requestData = _args3.length > 2 && _args3[2] !== undefined ? _args3[2] : {};
+            fetchOptions = {
+              method: 'PUT',
+              headers: {
+                'Content-Type': 'application/json',
+                'X-API-KEY': apiKey
+              },
+              body: JSON.stringify(requestData),
+              credentials: 'include'
+            };
+            _context3.next = 4;
+            return fetch(path.join(API_BASE_PATH, url), fetchOptions);
+          case 4:
+            result = _context3.sent;
+            if (!result.ok) {
+              _context3.next = 7;
+              break;
+            }
+            return _context3.abrupt("return", result.json());
+          case 7:
+            return _context3.abrupt("return", Promise.reject(result));
+          case 8:
+          case "end":
+            return _context3.stop();
+        }
+      }, _callee3);
+    }));
+    return function putFetch(_x5, _x6) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
 
   var FastGameApiClient = /*#__PURE__*/function () {
     function FastGameApiClient(apiKey) {
@@ -570,7 +610,7 @@
             while (1) switch (_context5.prev = _context5.next) {
               case 0:
                 _context5.next = 2;
-                return getFetch(this.apiKey, '/me/ranking', {
+                return putFetch(this.apiKey, '/me/ranking', {
                   password: password,
                   customData: customData
                 });
@@ -593,7 +633,7 @@
             while (1) switch (_context6.prev = _context6.next) {
               case 0:
                 _context6.next = 2;
-                return getFetch(this.apiKey, '/me/password', {
+                return putFetch(this.apiKey, '/me/password', {
                   password: password,
                   newPassword: newPassword
                 });
@@ -636,7 +676,65 @@
     return FastGameApiClient;
   }();
 
+  var FastGameApiClientWithID = /*#__PURE__*/function () {
+    function FastGameApiClientWithID(apiKey) {
+      _classCallCheck(this, FastGameApiClientWithID);
+      _defineProperty(this, "apiKey", void 0);
+      this.apiKey = apiKey;
+    }
+    _createClass(FastGameApiClientWithID, [{
+      key: "getRanking",
+      value: function () {
+        var _getRanking = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(tag) {
+          return _regeneratorRuntime().wrap(function _callee$(_context) {
+            while (1) switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return getFetch(this.apiKey, '/ranking', {
+                  tag: tag
+                });
+              case 2:
+              case "end":
+                return _context.stop();
+            }
+          }, _callee, this);
+        }));
+        function getRanking(_x) {
+          return _getRanking.apply(this, arguments);
+        }
+        return getRanking;
+      }()
+    }, {
+      key: "sendNewScore",
+      value: function () {
+        var _sendNewScore = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(userid, score, tag, customData) {
+          return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+            while (1) switch (_context2.prev = _context2.next) {
+              case 0:
+                _context2.next = 2;
+                return postFetch(this.apiKey, '/score', {
+                  userid: userid,
+                  score: score,
+                  tag: tag,
+                  customData: customData
+                });
+              case 2:
+              case "end":
+                return _context2.stop();
+            }
+          }, _callee2, this);
+        }));
+        function sendNewScore(_x2, _x3, _x4, _x5) {
+          return _sendNewScore.apply(this, arguments);
+        }
+        return sendNewScore;
+      }()
+    }]);
+    return FastGameApiClientWithID;
+  }();
+
   exports.FastGameApiClient = FastGameApiClient;
+  exports.FastGameApiClientWithID = FastGameApiClientWithID;
 
 }));
 //# sourceMappingURL=fast-game-api-client.js.map
