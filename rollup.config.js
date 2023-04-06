@@ -1,8 +1,8 @@
 import babel from '@rollup/plugin-babel';
-import glslify from 'rollup-plugin-glslify';
 import postcss from 'rollup-plugin-postcss';
 import typescript from '@rollup/plugin-typescript';
 import nodeResolve from 'rollup-plugin-node-resolve';
+import nodePolyfills from 'rollup-plugin-node-polyfills';
 
 const extensions = ['.ts', '.js'];
 
@@ -22,7 +22,7 @@ export default [
 
     plugins: [
       nodeResolve({browser: true}),
-      glslify(),
+      nodePolyfills(),
       postcss({
         extract: true,
       }),
@@ -49,6 +49,7 @@ export default [
 
     plugins: [
       nodeResolve({browser: true}),
+      nodePolyfills(),
       postcss({
         extract: true,
       }),
@@ -60,7 +61,6 @@ export default [
         rootDir: 'src',
         declarationDir: 'build/es/src',
       }),
-      glslify(),
     ],
   },
 
@@ -75,6 +75,7 @@ export default [
     },
     plugins: [
       nodeResolve({browser: true}),
+      nodePolyfills(),
       postcss({
         extract: true,
       }),
@@ -86,7 +87,6 @@ export default [
         rootDir: 'src',
         declarationDir: 'build/umd',
       }),
-      glslify(),
     ],
   },
 ];
