@@ -14,7 +14,7 @@ export const getFetch = async (apiKey: string, url: string,  params: Record<stri
 
   const query = new URLSearchParams(params);
 
-  const result = await fetch(`path.join(API_BASE_PATH, url)?${params}`, fetchOptions);
+  const result = await fetch(`${path.join(API_BASE_PATH, url)}?${params}`, fetchOptions);
 
   if (result.ok) return result.json();
 
