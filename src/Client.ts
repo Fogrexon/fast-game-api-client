@@ -9,7 +9,8 @@ export class Client {
   }
 
   public async getRanking(tag?: string) {
-    await getFetch(this.apiKey, '/ranking', { tag });
+    const query = tag ? { tag } : undefined;
+    await getFetch(this.apiKey, '/ranking', query);
   }
 
   public async sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T) {

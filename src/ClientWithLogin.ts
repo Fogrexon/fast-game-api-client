@@ -9,7 +9,8 @@ export class ClientWithLogin {
   }
 
   public async getRanking(tag?: string) {
-    await getFetch(this.apiKey, '/ranking', { tag });
+    const query = tag ? { tag } : undefined;
+    await getFetch(this.apiKey, '/ranking', query);
   }
 
   public async signup(id: string, password: string) {

@@ -599,35 +599,35 @@
   var API_BASE_PATH = 'http://fast-game-api.fogrex.trap.show/api/';
   var getFetch = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(apiKey, url) {
-      var requestData,
+      var params,
         fetchOptions,
         result,
         _args = arguments;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
           case 0:
-            requestData = _args.length > 2 && _args[2] !== undefined ? _args[2] : {};
+            params = _args.length > 2 && _args[2] !== undefined ? _args[2] : {};
             fetchOptions = {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json',
                 'X-API-KEY': apiKey
               },
-              body: JSON.stringify(requestData),
               credentials: 'include'
             };
-            _context.next = 4;
-            return fetch(path.join(API_BASE_PATH, url), fetchOptions);
-          case 4:
+            new URLSearchParams(params);
+            _context.next = 5;
+            return fetch("path.join(API_BASE_PATH, url)?".concat(params), fetchOptions);
+          case 5:
             result = _context.sent;
             if (!result.ok) {
-              _context.next = 7;
+              _context.next = 8;
               break;
             }
             return _context.abrupt("return", result.json());
-          case 7:
-            return _context.abrupt("return", Promise.reject(result));
           case 8:
+            return _context.abrupt("return", Promise.reject(result));
+          case 9:
           case "end":
             return _context.stop();
         }
@@ -728,14 +728,16 @@
       key: "getRanking",
       value: function () {
         var _getRanking = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(tag) {
+          var query;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return getFetch(this.apiKey, '/ranking', {
+                query = tag ? {
                   tag: tag
-                });
-              case 2:
+                } : undefined;
+                _context.next = 3;
+                return getFetch(this.apiKey, '/ranking', query);
+              case 3:
               case "end":
                 return _context.stop();
             }
@@ -896,14 +898,16 @@
       key: "getRanking",
       value: function () {
         var _getRanking = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(tag) {
+          var query;
           return _regeneratorRuntime().wrap(function _callee$(_context) {
             while (1) switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
-                return getFetch(this.apiKey, '/ranking', {
+                query = tag ? {
                   tag: tag
-                });
-              case 2:
+                } : undefined;
+                _context.next = 3;
+                return getFetch(this.apiKey, '/ranking', query);
+              case 3:
               case "end":
                 return _context.stop();
             }

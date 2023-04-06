@@ -1,2 +1,2 @@
-export { ClientWithLogin } from './FastGameApiClient';
-export { Client } from './FastGameApiClientWithID';
+export { ClientWithLogin } from './ClientWithLogin';
+export { Client } from './Client';
