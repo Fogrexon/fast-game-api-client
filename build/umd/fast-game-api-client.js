@@ -617,7 +617,7 @@
             };
             new URLSearchParams(params);
             _context.next = 5;
-            return fetch("path.join(API_BASE_PATH, url)?".concat(params), fetchOptions);
+            return fetch("".concat(path.join(API_BASE_PATH, url), "?").concat(params), fetchOptions);
           case 5:
             result = _context.sent;
             if (!result.ok) {
