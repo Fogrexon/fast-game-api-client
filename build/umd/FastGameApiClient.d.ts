@@ -1,4 +1,4 @@
-export declare class FastGameApiClient {
+export declare class ClientWithLogin {
     private apiKey;
     constructor(apiKey: string);
     getRanking(tag?: string): Promise<void>;

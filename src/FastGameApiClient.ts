@@ -1,7 +1,7 @@
 import { getFetch, postFetch, putFetch } from "./fetchExtend";
 
 
-export class FastGameApiClient {
+export class ClientWithLogin {
   private apiKey: string;
 
   constructor(apiKey: string) {

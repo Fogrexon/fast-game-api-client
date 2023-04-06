@@ -1,7 +1,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('path')) :
   typeof define === 'function' && define.amd ? define(['exports', 'path'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global["fast-game-api-client"] = {}, global.path));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.FastGameApi = {}, global.path));
 })(this, (function (exports, path) { 'use strict';
 
   function _regeneratorRuntime() {
@@ -508,13 +508,13 @@
     };
   }();
 
-  var FastGameApiClient = /*#__PURE__*/function () {
-    function FastGameApiClient(apiKey) {
-      _classCallCheck(this, FastGameApiClient);
+  var ClientWithLogin = /*#__PURE__*/function () {
+    function ClientWithLogin(apiKey) {
+      _classCallCheck(this, ClientWithLogin);
       _defineProperty(this, "apiKey", void 0);
       this.apiKey = apiKey;
     }
-    _createClass(FastGameApiClient, [{
+    _createClass(ClientWithLogin, [{
       key: "getRanking",
       value: function () {
         var _getRanking = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(tag) {
@@ -673,16 +673,16 @@
         return sendNewScore;
       }()
     }]);
-    return FastGameApiClient;
+    return ClientWithLogin;
   }();
 
-  var FastGameApiClientWithID = /*#__PURE__*/function () {
-    function FastGameApiClientWithID(apiKey) {
-      _classCallCheck(this, FastGameApiClientWithID);
+  var Client = /*#__PURE__*/function () {
+    function Client(apiKey) {
+      _classCallCheck(this, Client);
       _defineProperty(this, "apiKey", void 0);
       this.apiKey = apiKey;
     }
-    _createClass(FastGameApiClientWithID, [{
+    _createClass(Client, [{
       key: "getRanking",
       value: function () {
         var _getRanking = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(tag) {
@@ -730,11 +730,11 @@
         return sendNewScore;
       }()
     }]);
-    return FastGameApiClientWithID;
+    return Client;
   }();
 
-  exports.FastGameApiClient = FastGameApiClient;
-  exports.FastGameApiClientWithID = FastGameApiClientWithID;
+  exports.Client = Client;
+  exports.ClientWithLogin = ClientWithLogin;
 
 }));
 //# sourceMappingURL=fast-game-api-client.js.map

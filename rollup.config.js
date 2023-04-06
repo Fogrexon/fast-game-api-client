@@ -70,7 +70,7 @@ export default [
       file: 'build/umd/fast-game-api-client.js',
       // dir: 'build/umd',
       format: 'umd',
-      name: 'fast-game-api-client',
+      name: 'FastGameApi',
       sourcemap: true,
     },
     plugins: [
