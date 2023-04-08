@@ -1,6 +1,7 @@
 import path from 'path';
 
-const API_BASE_PATH = 'http://fast-game-api.fogrex.trap.show/api/';
+const API_HOST = 'https://fogrex.trap.show';
+const API_BASE_PATH = '/fast-game-api/api/';
 
 export const getFetch = async (apiKey: string, url: string,  params: Record<string, string> = {}) => {
   const fetchOptions: RequestInit = {
@@ -10,13 +11,18 @@ export const getFetch = async (apiKey: string, url: string,  params: Record<stri
       'X-API-KEY': apiKey,
     },
     credentials: 'include',
+    mode: 'cors',
   };
 
   const query = new URLSearchParams(params);
 
-  const result = await fetch(`${path.join(API_BASE_PATH, url)}?${params}`, fetchOptions);
+  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}?${query}`, fetchOptions);
 
-  if (result.ok) return result.json();
+  if (result.ok) {
+    const contentHeader = result.headers.get('Content-Type');
+    if (contentHeader && contentHeader.indexOf('application/json') >= 0) return result.json();
+    return;
+  }
 
   return Promise.reject(result);
 }
@@ -30,11 +36,16 @@ export const postFetch = async (apiKey: string, url: string, requestData: Record
     },
     body: JSON.stringify(requestData),
     credentials: 'include',
+    mode: 'cors',
   };
 
-  const result = await fetch(path.join(API_BASE_PATH, url), fetchOptions);
+  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}`, fetchOptions);
 
-  if (result.ok) return result.json();
+  if (result.ok) {
+    const contentHeader = result.headers.get('Content-Type');
+    if (contentHeader && contentHeader.indexOf('application/json') >= 0) return result.json();
+    return;
+  }
 
   return Promise.reject(result);
 }
@@ -48,11 +59,16 @@ export const putFetch = async (apiKey: string, url: string, requestData: Record<
     },
     body: JSON.stringify(requestData),
     credentials: 'include',
+    mode: 'cors',
   };
 
-  const result = await fetch(path.join(API_BASE_PATH, url), fetchOptions);
+  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}`, fetchOptions);
 
-  if (result.ok) return result.json();
+  if (result.ok) {
+    const contentHeader = result.headers.get('Content-Type');
+    if (contentHeader && contentHeader.indexOf('application/json') >= 0) return result.json();
+    return;
+  }
 
   return Promise.reject(result);
 }

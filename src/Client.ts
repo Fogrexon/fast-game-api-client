@@ -10,10 +10,10 @@ export class Client {
 
   public async getRanking(tag?: string) {
     const query = tag ? { tag } : undefined;
-    await getFetch(this.apiKey, '/ranking', query);
+    return await getFetch(this.apiKey, '/ranking', query);
   }
 
   public async sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T) {
-    await postFetch(this.apiKey, '/score', { userid, score, tag, customData });
+    return await postFetch(this.apiKey, '/score', { userid, score, tag, customData });
   }
 }

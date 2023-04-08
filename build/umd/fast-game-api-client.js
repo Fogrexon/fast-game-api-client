@@ -596,12 +596,15 @@
     return str.substr(start, len);
   };
 
-  var API_BASE_PATH = 'http://fast-game-api.fogrex.trap.show/api/';
+  var API_HOST = 'https://fogrex.trap.show';
+  var API_BASE_PATH = '/fast-game-api/api/';
   var getFetch = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee(apiKey, url) {
       var params,
         fetchOptions,
+        query,
         result,
+        contentHeader,
         _args = arguments;
       return _regeneratorRuntime().wrap(function _callee$(_context) {
         while (1) switch (_context.prev = _context.next) {
@@ -613,21 +616,29 @@
                 'Content-Type': 'application/json',
                 'X-API-KEY': apiKey
               },
-              credentials: 'include'
+              credentials: 'include',
+              mode: 'cors'
             };
-            new URLSearchParams(params);
+            query = new URLSearchParams(params);
             _context.next = 5;
-            return fetch("".concat(path.join(API_BASE_PATH, url), "?").concat(params), fetchOptions);
+            return fetch("".concat(API_HOST).concat(path.join(API_BASE_PATH, url), "?").concat(query), fetchOptions);
           case 5:
             result = _context.sent;
             if (!result.ok) {
-              _context.next = 8;
+              _context.next = 11;
+              break;
+            }
+            contentHeader = result.headers.get('Content-Type');
+            if (!(contentHeader && contentHeader.indexOf('application/json') >= 0)) {
+              _context.next = 10;
               break;
             }
             return _context.abrupt("return", result.json());
-          case 8:
+          case 10:
+            return _context.abrupt("return");
+          case 11:
             return _context.abrupt("return", Promise.reject(result));
-          case 9:
+          case 12:
           case "end":
             return _context.stop();
         }
@@ -642,6 +653,7 @@
       var requestData,
         fetchOptions,
         result,
+        contentHeader,
         _args2 = arguments;
       return _regeneratorRuntime().wrap(function _callee2$(_context2) {
         while (1) switch (_context2.prev = _context2.next) {
@@ -654,20 +666,28 @@
                 'X-API-KEY': apiKey
               },
               body: JSON.stringify(requestData),
-              credentials: 'include'
+              credentials: 'include',
+              mode: 'cors'
             };
             _context2.next = 4;
-            return fetch(path.join(API_BASE_PATH, url), fetchOptions);
+            return fetch("".concat(API_HOST).concat(path.join(API_BASE_PATH, url)), fetchOptions);
           case 4:
             result = _context2.sent;
             if (!result.ok) {
-              _context2.next = 7;
+              _context2.next = 10;
+              break;
+            }
+            contentHeader = result.headers.get('Content-Type');
+            if (!(contentHeader && contentHeader.indexOf('application/json') >= 0)) {
+              _context2.next = 9;
               break;
             }
             return _context2.abrupt("return", result.json());
-          case 7:
+          case 9:
+            return _context2.abrupt("return");
+          case 10:
             return _context2.abrupt("return", Promise.reject(result));
-          case 8:
+          case 11:
           case "end":
             return _context2.stop();
         }
@@ -682,6 +702,7 @@
       var requestData,
         fetchOptions,
         result,
+        contentHeader,
         _args3 = arguments;
       return _regeneratorRuntime().wrap(function _callee3$(_context3) {
         while (1) switch (_context3.prev = _context3.next) {
@@ -694,20 +715,28 @@
                 'X-API-KEY': apiKey
               },
               body: JSON.stringify(requestData),
-              credentials: 'include'
+              credentials: 'include',
+              mode: 'cors'
             };
             _context3.next = 4;
-            return fetch(path.join(API_BASE_PATH, url), fetchOptions);
+            return fetch("".concat(API_HOST).concat(path.join(API_BASE_PATH, url)), fetchOptions);
           case 4:
             result = _context3.sent;
             if (!result.ok) {
-              _context3.next = 7;
+              _context3.next = 10;
+              break;
+            }
+            contentHeader = result.headers.get('Content-Type');
+            if (!(contentHeader && contentHeader.indexOf('application/json') >= 0)) {
+              _context3.next = 9;
               break;
             }
             return _context3.abrupt("return", result.json());
-          case 7:
+          case 9:
+            return _context3.abrupt("return");
+          case 10:
             return _context3.abrupt("return", Promise.reject(result));
-          case 8:
+          case 11:
           case "end":
             return _context3.stop();
         }
@@ -738,6 +767,8 @@
                 _context.next = 3;
                 return getFetch(this.apiKey, '/ranking', query);
               case 3:
+                return _context.abrupt("return", _context.sent);
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -761,6 +792,8 @@
                   password: password
                 });
               case 2:
+                return _context2.abrupt("return", _context2.sent);
+              case 3:
               case "end":
                 return _context2.stop();
             }
@@ -784,6 +817,8 @@
                   password: password
                 });
               case 2:
+                return _context3.abrupt("return", _context3.sent);
+              case 3:
               case "end":
                 return _context3.stop();
             }
@@ -804,6 +839,8 @@
                 _context4.next = 2;
                 return getFetch(this.apiKey, '/me');
               case 2:
+                return _context4.abrupt("return", _context4.sent);
+              case 3:
               case "end":
                 return _context4.stop();
             }
@@ -827,6 +864,8 @@
                   customData: customData
                 });
               case 2:
+                return _context5.abrupt("return", _context5.sent);
+              case 3:
               case "end":
                 return _context5.stop();
             }
@@ -850,6 +889,8 @@
                   newPassword: newPassword
                 });
               case 2:
+                return _context6.abrupt("return", _context6.sent);
+              case 3:
               case "end":
                 return _context6.stop();
             }
@@ -874,6 +915,8 @@
                   customData: customData
                 });
               case 2:
+                return _context7.abrupt("return", _context7.sent);
+              case 3:
               case "end":
                 return _context7.stop();
             }
@@ -908,6 +951,8 @@
                 _context.next = 3;
                 return getFetch(this.apiKey, '/ranking', query);
               case 3:
+                return _context.abrupt("return", _context.sent);
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -933,6 +978,8 @@
                   customData: customData
                 });
               case 2:
+                return _context2.abrupt("return", _context2.sent);
+              case 3:
               case "end":
                 return _context2.stop();
             }
