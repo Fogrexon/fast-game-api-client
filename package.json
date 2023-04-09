@@ -1,6 +1,6 @@
 {
   "name": "@fogrexon/fast-game-api-client",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Fast game api client",
   "main": "build/commonjs/src/index.js",
   "module": "build/es/src/index.js",
