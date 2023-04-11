@@ -1,6 +1,7 @@
+import { RankingResponse } from "./Response";
 export declare class Client {
     private apiKey;
     constructor(apiKey: string);
-    getRanking(tag?: string): Promise<any>;
-    sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T): Promise<any>;
+    getRanking<TCustomData = undefined>(tag?: string): Promise<RankingResponse<TCustomData>>;
+    sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T): Promise<void>;
 }

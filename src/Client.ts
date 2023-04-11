@@ -1,4 +1,5 @@
-import { getFetch, postFetch, putFetch } from "./fetchExtend";
+import { RankingResponse } from "./Response";
+import { getFetch, postFetch } from "./fetchExtend";
 
 
 export class Client {
@@ -8,12 +9,12 @@ export class Client {
     this.apiKey = apiKey;
   }
 
-  public async getRanking(tag?: string) {
+  public async getRanking<TCustomData = undefined>(tag?: string): Promise<RankingResponse<TCustomData>> {
     const query = tag ? { tag } : undefined;
-    return await getFetch(this.apiKey, '/ranking', query);
+    return await getFetch(this.apiKey, '/ranking', query) as RankingResponse<TCustomData>;
   }
 
-  public async sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T) {
+  public async sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T): Promise<void> {
     return await postFetch(this.apiKey, '/score', { userid, score, tag, customData });
   }
 }
