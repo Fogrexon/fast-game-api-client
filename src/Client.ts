@@ -15,6 +15,6 @@ export class Client {
   }
 
   public async sendNewScore<T>(userid: string, score: number, tag?: string, customData?: T): Promise<void> {
-    return await postFetch(this.apiKey, '/score', { userid, score, tag, customData });
+    return postFetch(this.apiKey, '/score', { userid, score, tag, customData });
   }
 }

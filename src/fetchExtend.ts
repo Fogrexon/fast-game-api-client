@@ -1,7 +1,5 @@
-import path from 'path';
-
 const API_HOST = 'https://fogrex.trap.show';
-const API_BASE_PATH = '/fast-game-api/api/';
+const API_BASE_PATH = '/fast-game-api/api';
 
 export const getFetch = async (apiKey: string, url: string,  params: Record<string, string> = {}) => {
   const fetchOptions: RequestInit = {
@@ -16,7 +14,7 @@ export const getFetch = async (apiKey: string, url: string,  params: Record<stri
 
   const query = new URLSearchParams(params);
 
-  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}?${query}`, fetchOptions);
+  const result = await fetch(`${API_HOST}${API_BASE_PATH}${url}?${query}`, fetchOptions);
 
   if (result.ok) {
     const contentHeader = result.headers.get('Content-Type');
@@ -39,7 +37,7 @@ export const postFetch = async (apiKey: string, url: string, requestData: Record
     mode: 'cors',
   };
 
-  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}`, fetchOptions);
+  const result = await fetch(`${API_HOST}${API_BASE_PATH}${url}`, fetchOptions);
 
   if (result.ok) {
     const contentHeader = result.headers.get('Content-Type');
@@ -62,7 +60,7 @@ export const putFetch = async (apiKey: string, url: string, requestData: Record<
     mode: 'cors',
   };
 
-  const result = await fetch(`${API_HOST}${path.join(API_BASE_PATH, url)}`, fetchOptions);
+  const result = await fetch(`${API_HOST}${API_BASE_PATH}${url}`, fetchOptions);
 
   if (result.ok) {
     const contentHeader = result.headers.get('Content-Type');

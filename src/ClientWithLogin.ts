@@ -15,11 +15,11 @@ export class ClientWithLogin {
   }
 
   public async signup(id: string, password: string): Promise<void> {
-    return await postFetch(this.apiKey, '/signup', { id, password });
+    return postFetch(this.apiKey, '/signup', { id, password });
   }
 
   public async login(id: string, password: string): Promise<void> {
-    return await postFetch(this.apiKey, '/login', { id, password });
+    return postFetch(this.apiKey, '/login', { id, password });
   }
 
   public async getMyInfo<TCustomData = undefined>(): Promise<UserInfoResponse<TCustomData>> {
@@ -27,14 +27,14 @@ export class ClientWithLogin {
   }
 
   public async updateMyCustomData<TCustomData>(password: string, customData?: TCustomData): Promise<void> {
-    return await putFetch(this.apiKey, '/me/ranking', { password, customData });
+    return putFetch(this.apiKey, '/me/ranking', { password, customData });
   }
 
   public async updateMyPassword(password: string, newPassword: string): Promise<void> {
-    return await putFetch(this.apiKey, '/me/password', { password, newPassword });
+    return putFetch(this.apiKey, '/me/password', { password, newPassword });
   }
 
   public async sendNewScore<T>(score: number, tag?: string, customData?: T): Promise<void> {
-    return await postFetch(this.apiKey, '/score', { score, tag, customData });
+    return postFetch(this.apiKey, '/score', { score, tag, customData });
   }
 }
